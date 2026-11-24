@@ -15,7 +15,7 @@ ESP32-P4C5-CAM 视觉模块作为 I²C 从机（离线视觉固件 7 位默认�
 sequenceDiagram
     autonumber
     participant Host as 主机控制器 (MCU / 树莓派 / Jetson)
-    participant Module as ESP32P4C5-Cam (从机 0x54)
+    participant Module as ESP32-P4C5-CAM (从机 0x54)
 
     Note over Host,Module: 1. 单帧查询时序 (如手势/目标检测)
     Host->>Module: I2C 写入: {"command":"get_info","params":"hand_gesture"}

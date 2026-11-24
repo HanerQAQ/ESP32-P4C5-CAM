@@ -33,20 +33,18 @@ idf.py -p COMx flash monitor   # Replace COMx with your actual serial port
 
 # 行人检测 · Web 回传
 
-本目录是交付版 `pedestrian_detect` 例程。除原例程的 LCD、I²C、语音和识别功能外，
-新增了 Wi-Fi MJPEG 视频和检测结果 Web 回传。
+本目录为 `pedestrian_detect` 离线视觉例程（离线行人目标检测），内置 I²C 从机（`0x54`）协议输出，并支持 Wi-Fi MJPEG 实时图传与检测结果 Web 叠加预览。
 
 ## 构建
 
 ```bash
-source /path/to/firmware/export.sh   # 使用 ESP-IDF v6.1
+source /path/to/esp-idf/export.sh     # 激活 ESP-IDF v6.1 环境
 cd pedestrian_detect
 idf.py set-target esp32p4
 idf.py build
 idf.py -p COMx flash monitor   # 将 COMx 替换为实际串口号
 ```
 
-WSL 中构建时，建议把工程放在 Linux 文件系统内；Windows 可使用 COM 端口（COMx）烧录。
 共享组件位于 `../components`，需要和本目录一起保留。
 
 ## 连接与访问
@@ -69,7 +67,7 @@ WSL 中构建时，建议把工程放在 Linux 文件系统内；Windows 可使�
 ## 结果说明
 
 Web 结果类型为 `pedestrian`，对象数组字段说明见上层 `../README.md`。
-视频和识别框使用 320×240 的 LCD 帧坐标系；检测结果更新时由检测回调写入。
+视频画面与检测框统一使用 320×240 推理帧坐标系；检测结果更新时由推理回调实时写入。
 只有存在视频客户端时才会进行 JPEG 编码。
 
 开放热点没有认证，仅适合本机/可信局域网演示。详细实现见

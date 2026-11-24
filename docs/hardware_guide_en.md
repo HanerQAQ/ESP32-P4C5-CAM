@@ -1,4 +1,4 @@
-# Hardware Overview (ESP32P4C5-Cam)
+# Hardware Overview (ESP32-P4C5-CAM)
 
 **English** | [简体中文](hardware_guide_zh.md)
 
@@ -6,13 +6,13 @@
 
 ## 1. Introduction
 
-**ESP32P4C5-Cam** is a high-performance dual-chip AI camera module designed for edge computer vision, embodied AI, and low-latency wireless video streaming. It consists of the **ESP32P4C5-CAM Mini Core Board** and the **P4C5-CAM Carrier Board**, allowing it to be embedded directly as a compact minimum system or rapidly evaluated via the carrier board.
+**ESP32-P4C5-CAM** is a high-performance dual-chip AI camera module designed for edge computer vision, embodied AI, and low-latency wireless video streaming. It consists of the **ESP32P4C5-CAM Mini Core Board** and the **P4C5-CAM Carrier Board**, allowing it to be embedded directly as a compact minimum system or rapidly evaluated via the carrier board.
 
 - **Compute & Vision Processing (ESP32-P4)**: Dual-core RISC-V @ 400 MHz with AI/DSP instruction extensions, hardware ISP, hardware JPEG codec, and 2D PPA accelerator dedicated to MIPI image capture and on-device vision inference.
 - **High-Speed Wireless (ESP32-C5)**: Single-core RISC-V @ 240 MHz supporting dual-band **2.4 GHz & 5 GHz Wi-Fi 6 (802.11ax)** and **Bluetooth 5.0 (LE)** for low-latency video streaming and telemetry.
 - **High Integration**: Combines compute, dual-band RF antenna, and a 2MP MIPI-CSI camera in a compact form factor.
 
-<p align="center"><img src="assets/render_core_front.png" width="320" alt="ESP32P4C5-Cam Core Module"/></p>
+<p align="center"><img src="assets/render_core_front.png" width="320" alt="ESP32-P4C5-CAM Core Module"/></p>
 
 ---
 

@@ -10,7 +10,7 @@ This directory contains 11 Arduino examples for communicating with the **ESP32-P
 
 Connect the carrier board `P1 (5264-4P)` header to your ESP32 Arduino host:
 
-| ESP32P4C5-Cam (`P1`) | ESP32 Development Board | Notes |
+| ESP32-P4C5-CAM (`P1`) | ESP32 Development Board | Notes |
 | :---: | :---: | :--- |
 | **Pin 1 (5V / VCC)** | `5V / VIN` | Stable **5V ≥ 2A** supply required |
 | **Pin 2 (GND)** | `GND` | Common ground |
@@ -53,7 +53,7 @@ This folder is a standard **Arduino 1.5 Library**:
 
 ## 简体中文
 
-本目录包含适用于 **ESP32 Arduino** 主控的 11 组视觉交互例程，通过 I²C 总线（从机地址 `0x54`，推荐速率 `400 kHz`）与 **ESP32P4C5-Cam** 视觉模块通信。
+本目录包含适用于 **ESP32 Arduino** 主控的 11 组视觉交互例程，通过 I²C 总线（从机地址 `0x54`，推荐速率 `400 kHz`）与 **ESP32-P4C5-CAM** 视觉模块通信。
 
 ### 硬件接线
 

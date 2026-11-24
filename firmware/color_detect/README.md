@@ -2,7 +2,7 @@
 
 **English** | [简体中文](#简体中文)
 
-Offline multi-color blob detection and line tracking firmware for ESP32P4C5-Cam. Features on-device HSV threshold segmentation, live Web MJPEG streaming, unified I²C slave output (`0x54`), and real-time threshold calibration over USB serial.
+Offline multi-color blob detection and line tracking firmware for ESP32-P4C5-CAM. Features on-device HSV threshold segmentation, live Web MJPEG streaming, unified I²C slave output (`0x54`), and real-time threshold calibration over USB serial.
 
 - **Serial Protocol Specification**: [../../docs/uart_protocol_en.md](../../docs/uart_protocol_en.md) | [中文](../../docs/uart_protocol_zh.md)
 - **Desktop Calibration GUI (ColorTool)**: [../../tools/color_tool/README.md](../../tools/color_tool/README.md)
@@ -31,7 +31,7 @@ idf.py -p COMx flash monitor   # Replace COMx with your actual serial port
 
 ## 简体中文
 
-本目录为 `color_detect` 例程。除原例程的 LCD、I²C 从机（`0x54`）、语音和识别功能外，支持 Wi-Fi MJPEG 视频与检测结果 Web 回传，并可通过 USB 串口与上位机工具通信实时标定 HSV 颜色阈值。
+本目录为 `color_detect` 颜色与巡线视觉例程，支持 I²C 从机（`0x54`）输出、Wi-Fi MJPEG 视频与检测结果 Web 实时回传，并可通过底板 Type-C 串口配合 `ColorTool` 实时标定 HSV 阈值。
 
 - **串口通信协议规范**：[../../docs/uart_protocol_zh.md](../../docs/uart_protocol_zh.md)
 - **配套桌面端调参工具**：[../../tools/color_tool/README.md](../../tools/color_tool/README.md)

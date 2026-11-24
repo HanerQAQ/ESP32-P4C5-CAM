@@ -14,7 +14,7 @@ The ESP32-P4C5-CAM offline vision module acts as an **I²C slave** (7-bit addres
 sequenceDiagram
     autonumber
     participant Host as Host Controller (MCU/SBC)
-    participant Module as ESP32P4C5-Cam (Slave 0x54)
+    participant Module as ESP32-P4C5-CAM (Slave 0x54)
 
     Note over Host,Module: 1. Single-Frame Query Transaction
     Host->>Module: I2C Write: {"command":"get_info","params":"hand_gesture"}

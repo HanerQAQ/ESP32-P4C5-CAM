@@ -68,7 +68,7 @@ The carrier board provides a keyed `5264-4P` (2.5mm pitch) connector for I²C ho
 
 ### 原理图与资料清单
 
-- **[SCH_ESP32P4C5-CAM_Module_V1.0.pdf](SCH_ESP32P4C5-CAM_Module_V1.0.pdf)**：ESP32P4C5-Cam 核心板原理图（ESP32-P4 主控、ESP32-C5 SDIO 协处理器、GC2145 2-Lane MIPI 接口、供电拓扑）。
+- **[SCH_ESP32P4C5-CAM_Module_V1.0.pdf](SCH_ESP32P4C5-CAM_Module_V1.0.pdf)**：ESP32-P4C5-CAM 核心板原理图（ESP32-P4 主控、ESP32-C5 SDIO 协处理器、GC2145 2-Lane MIPI 接口、供电拓扑）。
 - **[SCH_ESP32P4C5-CAM_Carrier_Board.pdf](SCH_ESP32P4C5-CAM_Carrier_Board.pdf)**：扩展底板原理图（Type-C 供电/调试、5264-4P I²C 通讯端子、RST/BOOT 物理按键）。
 - **[GC2145_Datasheet.pdf](GC2145_Datasheet.pdf)**：GC2145 200 万像素 MIPI 摄像头传感器数据手册。
 - **[esp32-p4_datasheet_cn.pdf](esp32-p4_datasheet_cn.pdf)**：乐鑫 ESP32-P4 RISC-V 400 MHz 主控芯片规格书。

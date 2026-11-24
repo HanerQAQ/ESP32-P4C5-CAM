@@ -2,7 +2,7 @@
 
 **English** | [简体中文](TEST_GUIDE_zh.md)
 
-This document outlines the standard testing and factory validation procedures for the **ESP32P4C5-Cam** AP mode wireless streaming firmware. Testing is performed over Wi-Fi without an onboard LCD.
+This document outlines the standard testing and factory validation procedures for the **ESP32-P4C5-CAM** AP mode wireless streaming firmware. Testing is performed over Wi-Fi without an onboard LCD.
 
 ---
 
@@ -48,10 +48,10 @@ idf.py -p COMx flash monitor   # Replace COMx with your serial port
 Under "Streaming Mode", verify:
 
 1. Video updates continuously; moving an object in front of the lens shows smooth frame rate without freeze or tear.
-2. Complete 800×600 frame is displayed without center cropping.
+2. Default resolution starts at **`640×480`** (center-cropped from the native `800×600` GC2145 capture) and can be switched to full **`800×600`** in Web Settings.
 3. Aim at a plain white background under even illumination; check for dark spots, dust, vignetting, or uneven brightness.
 4. Aim at colorful objects with text to check optical sharpness, color accuracy, and absence of color banding.
-5. Click **Download JPEG** to verify the snapshot file; click **Download Raw** to verify non-empty `800x600` RGB565 raw data (960,000 bytes).
+5. Click **Download JPEG** to verify the snapshot file; click **Download Raw** to verify non-empty RGB565 raw data (`614,400` bytes at `640×480`, or `960,000` bytes at `800×600`).
 6. Adjust JPEG quality in the Web settings menu, save, and confirm stream recovers.
 
 ---

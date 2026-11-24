@@ -18,7 +18,7 @@ This directory contains 11 MicroPython examples for communicating with the **ESP
 
 
 
-| ESP32P4C5-Cam (`P1`) | ESP32 Board | Notes |
+| ESP32-P4C5-CAM (`P1`) | ESP32 Board | Notes |
 
 | :---: | :---: | :--- |
 

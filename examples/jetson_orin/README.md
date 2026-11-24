@@ -8,7 +8,7 @@ Python examples for interfacing an **NVIDIA Jetson Orin (Nano / NX / AGX)** with
 
 ## 40-Pin Header Wiring
 
-| ESP32P4C5-Cam (`P1`) | Jetson Orin 40-Pin Header | Notes |
+| ESP32-P4C5-CAM (`P1`) | Jetson Orin 40-Pin Header | Notes |
 | :---: | :---: | :--- |
 | **Pin 1 (5V / VCC)** | Pin 2 or Pin 4 (`5V`) | External 5V ≥ 2A power recommended |
 | **Pin 2 (GND)** | Pin 6 (`GND`) | Common ground |

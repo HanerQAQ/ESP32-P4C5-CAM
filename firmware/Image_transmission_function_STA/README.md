@@ -2,7 +2,7 @@
 
 **English** | [简体中文](#简体中文)
 
-Production-grade factory firmware for ESP32P4C5-Cam. Features **dual-mode Wi-Fi (STA regular mode + SoftAP fallback/on-demand config)**, hardware-accelerated **MJPEG streaming over Wi-Fi 6 (802.11ax)**, full REST API backwards compatibility, 32-byte fragmented **ESP32-P4C5-CAM I²C slave protocol (`0x52`)**, physical BOOT button pairing, and UART CLI console.
+Production-grade factory firmware for ESP32-P4C5-CAM. Features **dual-mode Wi-Fi (STA regular mode + SoftAP fallback/on-demand config)**, hardware-accelerated **MJPEG streaming over Wi-Fi 6 (802.11ax)**, full REST API backwards compatibility, 32-byte fragmented **ESP32-P4C5-CAM I²C slave protocol (`0x52`)**, physical BOOT button pairing, and UART CLI console.
 
 ## Build & Flash
 

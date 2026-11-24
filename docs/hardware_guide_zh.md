@@ -1,4 +1,4 @@
-# ESP32P4C5-Cam 硬件规格与接口说明
+# ESP32-P4C5-CAM 硬件规格与接口说明
 
 [English](hardware_guide_en.md) | **简体中文**
 
@@ -18,7 +18,7 @@
 
 广泛适用于教育机器人视觉套件、工业条码/色块识别、机械臂末端识别、全屋智能门禁视觉等边缘计算场景。
 
-<p align="center"><img src="assets/render_core_front.png" width="320" alt="ESP32P4C5-Cam Core Module"/></p>
+<p align="center"><img src="assets/render_core_front.png" width="320" alt="ESP32-P4C5-CAM Core Module"/></p>
 
 ---
 

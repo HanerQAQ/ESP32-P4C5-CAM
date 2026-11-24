@@ -8,7 +8,7 @@ Minimal **STM32 HAL (FreeRTOS / Bare-Metal)** driver and 11 application examples
 
 Connect the carrier board `P1 (5264-4P)` header to your STM32 development board:
 
-| ESP32P4C5-Cam (`P1`) | STM32 Board (e.g. F401 / F411 / F103) | Notes |
+| ESP32-P4C5-CAM (`P1`) | STM32 Board (e.g. F401 / F411 / F103) | Notes |
 | :---: | :---: | :--- |
 | **Pin 1 (5V / VCC)** | `5V` | Stable **5V ≥ 2A** supply recommended |
 | **Pin 2 (GND)** | `GND` | Common ground |

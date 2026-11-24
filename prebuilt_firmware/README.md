@@ -11,7 +11,7 @@ Merged single-file factory binaries (bootloader + partition table + `ota_data`/`
 | Merged Binary (`0x0`) | Function / 功能说明 | Default Access / 默认热点与 I²C |
 | :--- | :--- | :--- |
 | `Image_transmission_function_STA.bin` | AP/STA Dual-Mode Streaming (Factory Default) | SoftAP `ESP32-P4C5-CAM-XXXXXX` / I²C `0x52` |
-| `Image_transmission_function_AP.bin` | AP-Only 5 GHz MJPEG Streaming | SoftAP `ESP32-P4C5-CAM-XXXXXX` / I²C Test `0x54` |
+| `Image_transmission_function_AP.bin` | AP-Only MJPEG Streaming (Default 2.4 GHz; 5 GHz Wi-Fi 6 optional) | SoftAP `ESP32-P4C5-CAM-XXXXXX` / I²C Test `0x54` |
 | `hand_gesture_recognition.bin` | 10-Class Hand Gesture Recognition | SoftAP `ESP32-P4C5-CAM-XXXXXX` / I²C `0x54` |
 | `cat_detect.bin` | Cat Detection | SoftAP `ESP32-P4C5-CAM-XXXXXX` / I²C `0x54` |
 | `dog_detect.bin` | Dog Detection | SoftAP `ESP32-P4C5-CAM-XXXXXX` / I²C `0x54` |
@@ -28,4 +28,24 @@ To generate all 12 merged binaries locally with **ESP-IDF v6.1**:
 ```bash
 cd firmware
 python build_and_verify_all.py --clean
+```
+
+---
+
+## Flashing Methods / 烧录方法
+
+### Option A: Interactive One-Click Flasher (Recommended) / 一键交互式烧录
+
+- **Windows**: Double-click or run [`flash.bat`](../flash.bat)
+- **Linux & macOS**: Run `./flash.sh` (`chmod +x ./flash.sh && ./flash.sh`)
+- **Direct Python CLI**:
+  ```bash
+  python tools/flash_firmware.py --port COMx --bin prebuilt_firmware/hand_gesture_recognition.bin --erase
+  ```
+
+### Option B: Command Line (`esptool`) / 底层命令行烧录
+
+```bash
+python -m esptool --chip esp32p4 -p COMx -b 460800 erase-flash
+python -m esptool --chip esp32p4 -p COMx -b 921600 write-flash 0x0 prebuilt_firmware/hand_gesture_recognition.bin
 ```
