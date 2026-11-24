@@ -1,0 +1,7 @@
+menu "color detect"
+    config COLOR_DETECT_MODEL
+        bool "Enable color detect model"
+        default y
+        help
+            Enable the color detect model result handling path.
+endmenu

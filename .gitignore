@@ -1,0 +1,44 @@
+# ESP-IDF build & component artifacts
+**/build/
+**/managed_components/
+sdkconfig
+**/sdkconfig
+sdkconfig.old
+**/sdkconfig.old
+dependencies.lock~
+
+# Python / PyInstaller (ColorTool)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+tools/color_tool/build/
+tools/color_tool/dist/
+*.exe
+
+# IDE & Editor
+.vscode/
+.idea/
+*.iml
+.clangd/
+.clangd
+compile_commands.json
+
+# STM32 / Keil MDK
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.map
+*.lnp
+*.uvoptx
+*.uvguix.*
+Objects/
+Listings/
+DebugConfig/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

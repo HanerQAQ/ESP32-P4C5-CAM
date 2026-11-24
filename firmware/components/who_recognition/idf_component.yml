@@ -1,0 +1,3 @@
+dependencies:
+  espressif/hand_gesture_recognition:
+    version: "0.2.1"

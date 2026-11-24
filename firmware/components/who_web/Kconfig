@@ -1,0 +1,54 @@
+menu "ESP32-P4C5-CAM web backhaul"
+
+    config WHO_WEB_AP_SSID
+        string "SoftAP SSID prefix"
+        default "ESP32-P4C5-CAM"
+        help
+            The last three bytes of the AP MAC are appended as -XXXXXX.
+
+    config WHO_WEB_AP_PASSWORD
+        string "SoftAP password (empty = open network)"
+        default ""
+
+    config WHO_WEB_AP_BAND_5G_ONLY
+        bool "Use 5 GHz only"
+        default y
+        help
+            The C5 radio supports 5 GHz. Disable to use 2.4 GHz for clients
+            that do not support 5 GHz.
+
+    config WHO_WEB_AP_CHANNEL
+        int "SoftAP channel"
+        default 36 if WHO_WEB_AP_BAND_5G_ONLY
+        default 6
+        range 36 64 if WHO_WEB_AP_BAND_5G_ONLY
+        range 1 11 if !WHO_WEB_AP_BAND_5G_ONLY
+        help
+            Non-DFS channels 36/40/44/48 are recommended on 5 GHz.
+
+    config WHO_WEB_AP_MAX_CONNECTIONS
+        int "Maximum Wi-Fi clients"
+        default 4
+        range 1 8
+
+    config WHO_WEB_HTTP_PORT
+        int "Web UI / JSON HTTP port"
+        default 80
+        range 1 65535
+
+    config WHO_WEB_STREAM_PORT
+        int "MJPEG stream port"
+        default 81
+        range 1 65535
+
+    config WHO_WEB_JPEG_QUALITY
+        int "JPEG quality"
+        default 60
+        range 1 100
+
+    config WHO_WEB_STREAM_FPS
+        int "Maximum stream frame rate"
+        default 10
+        range 1 30
+
+endmenu

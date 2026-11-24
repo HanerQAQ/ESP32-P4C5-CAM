@@ -1,0 +1,80 @@
+#######################################
+# Syntax Coloring Map For ESP32-P4C5-CAM
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+esp32_p4c5_cam_handle_t	KEYWORD1
+esp32_p4c5_cam_err_t	KEYWORD1
+esp32_p4c5_cam_vision_mode_t	KEYWORD1
+esp32_p4c5_cam_color_config_t	KEYWORD1
+esp32_p4c5_cam_color_result_t	KEYWORD1
+esp32_p4c5_cam_line_result_t	KEYWORD1
+esp32_p4c5_cam_hand_gesture_result_t	KEYWORD1
+esp32_p4c5_cam_target_detection_result_t	KEYWORD1
+esp32_p4c5_cam_pose_result_t	KEYWORD1
+esp32_p4c5_cam_apriltag_result_t	KEYWORD1
+esp32_p4c5_cam_qrcode_result_t	KEYWORD1
+esp32_p4c5_cam_speech_recognition_result_t	KEYWORD1
+esp32_p4c5_cam_color_block_t	KEYWORD1
+esp32_p4c5_cam_line_info_t	KEYWORD1
+esp32_p4c5_cam_hand_gesture_t	KEYWORD1
+esp32_p4c5_cam_target_object_t	KEYWORD1
+esp32_p4c5_cam_pose_person_t	KEYWORD1
+esp32_p4c5_cam_keypoint_t	KEYWORD1
+esp32_p4c5_cam_apriltag_detection_t	KEYWORD1
+esp32_p4c5_cam_qrcode_detection_t	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+esp32_p4c5_cam_init	KEYWORD2
+esp32_p4c5_cam_register_i2c_callbacks	KEYWORD2
+esp32_p4c5_cam_send_json	KEYWORD2
+esp32_p4c5_cam_receive_frame	KEYWORD2
+esp32_p4c5_cam_receive_packet	KEYWORD2
+esp32_p4c5_cam_get_color_config	KEYWORD2
+esp32_p4c5_cam_set_vision_mode	KEYWORD2
+esp32_p4c5_cam_get_color_result	KEYWORD2
+esp32_p4c5_cam_get_line_result	KEYWORD2
+esp32_p4c5_cam_get_hand_gesture_result	KEYWORD2
+esp32_p4c5_cam_get_cat_result	KEYWORD2
+esp32_p4c5_cam_get_dog_result	KEYWORD2
+esp32_p4c5_cam_get_pedestrian_result	KEYWORD2
+esp32_p4c5_cam_get_yolo11n_result	KEYWORD2
+esp32_p4c5_cam_get_face_result	KEYWORD2
+esp32_p4c5_cam_get_pose_result	KEYWORD2
+esp32_p4c5_cam_get_apriltag_result	KEYWORD2
+esp32_p4c5_cam_get_qrcode_result	KEYWORD2
+esp32_p4c5_cam_play_voice_prompt	KEYWORD2
+esp32_p4c5_cam_get_speech_recognition_result	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+ESP32_P4C5_CAM_OK	LITERAL1
+ESP32_P4C5_CAM_ERR_FAIL	LITERAL1
+ESP32_P4C5_CAM_ERR_INVALID_ARG	LITERAL1
+ESP32_P4C5_CAM_ERR_INVALID_SIZE	LITERAL1
+ESP32_P4C5_CAM_ERR_TIMEOUT	LITERAL1
+ESP32_P4C5_CAM_ERR_NOT_READY	LITERAL1
+ESP32_P4C5_CAM_ERR_PARSE	LITERAL1
+ESP32_P4C5_CAM_I2C_ADDR	LITERAL1
+ESP32_P4C5_CAM_I2C_ADDR	LITERAL1
+ESP32_P4C5_CAM_MAX_COLOR_BLOCKS	LITERAL1
+ESP32_P4C5_CAM_MAX_TARGET_COLORS	LITERAL1
+ESP32_P4C5_CAM_HAND_GESTURE_MAX_COUNT	LITERAL1
+ESP32_P4C5_CAM_TARGET_DETECTION_MAX_COUNT	LITERAL1
+ESP32_P4C5_CAM_YOLO11N_CLASS_MAX_ID	LITERAL1
+ESP32_P4C5_CAM_POSE_MAX_COUNT	LITERAL1
+ESP32_P4C5_CAM_POSE_KEYPOINT_COUNT	LITERAL1
+ESP32_P4C5_CAM_APRILTAG_MAX_COUNT	LITERAL1
+ESP32_P4C5_CAM_QRCODE_MAX_COUNT	LITERAL1
+ESP32_P4C5_CAM_QRCODE_MAX_TEXT_LEN	LITERAL1
+ESP32_P4C5_CAM_HAND_GESTURE_DISLIKE	LITERAL1
+VISION_MODE_COLOR	LITERAL1
+VISION_MODE_LINE	LITERAL1
