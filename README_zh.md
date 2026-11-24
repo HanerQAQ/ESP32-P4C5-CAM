@@ -75,7 +75,7 @@
 | **`color_detect`** | 5 组色块识别与视觉巡线（阈值写入 Flash 掉电保存） | `0x54` | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1`） | [`firmware/color_detect`](firmware/color_detect) |
 
 <details>
-<summary>界面预览：Web 实时图传页面（`192.168.5.1`）</summary>
+<summary>界面预览：Web 实时图传页面（<code>192.168.5.1</code>）</summary>
 
 <p align="center">
   <img src="docs/assets/web_ap_stream.png" width="520" alt="ESP32-P4C5-CAM AP 实时图传页面"/>

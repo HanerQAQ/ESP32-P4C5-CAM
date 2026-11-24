@@ -75,7 +75,7 @@ All 12 source projects live in [`firmware/`](firmware/README.md) and compile int
 | **`color_detect`** | 5-channel HSV color blob detection & line tracking (`Flash` config) | `0x54` | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1`) | [`firmware/color_detect`](firmware/color_detect) |
 
 <details>
-<summary>Preview: Live Web MJPEG Streaming UI (`192.168.5.1`)</summary>
+<summary>Preview: Live Web MJPEG Streaming UI (<code>192.168.5.1</code>)</summary>
 
 <p align="center">
   <img src="docs/assets/web_ap_stream.png" width="520" alt="ESP32-P4C5-CAM AP Stream UI"/>
