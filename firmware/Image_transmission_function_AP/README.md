@@ -2,7 +2,7 @@
 
 **English** | [简体中文](#简体中文)
 
-Standalone SoftAP Wi-Fi 6 (5 GHz) MJPEG streaming firmware for ESP32P4C5-Cam. Streams live video over Web port `81` (`/stream`), provides an interactive browser UI on port `80`, runs on-demand AprilTag (`tag36h11`) detection on CPU1, and verifies external I²C / BOOT functionality.
+Standalone SoftAP MJPEG streaming firmware for ESP32P4C5-Cam (**2.4 GHz Channel 1 by default** for broad compatibility; switchable to **5 GHz Wi-Fi 6** via `idf.py menuconfig` -> `Example Configuration` -> `Wi-Fi AP band`). Streams live video over Web port `81` (`/stream`), provides an interactive browser UI on port `80`, runs on-demand AprilTag (`tag36h11`) detection infrastructure on CPU1, and verifies external I²C / BOOT functionality.
 
 - **Testing Guide**: [TEST_GUIDE_en.md](TEST_GUIDE_en.md) | [中文说明](TEST_GUIDE_zh.md)
 
@@ -17,7 +17,7 @@ idf.py -p COMx flash monitor   # Replace COMx with your actual serial port
 
 ## Default Network & Web Service
 
-- **SoftAP SSID**: `ESP32-P4C5-CAM-XXXXXX` (5 GHz, Channel 36/40/44/48, Open)
+- **SoftAP SSID**: `ESP32-P4C5-CAM-XXXXXX` (Default: 2.4 GHz Channel 1, Open; optional 5 GHz Channels 36/40/44/48 via `menuconfig`)
 - **Web UI**: `http://192.168.5.1/` (port 80)
 - **MJPEG Stream**: `http://192.168.5.1:81/stream` (port 81)
 - **Detections API**: `http://192.168.5.1/api/detections`
@@ -70,13 +70,11 @@ idf.py -p COMx flash monitor   # 将 COMx 替换为设备在设备管理器中�
 
 SDIO 从机复位与 `simple_video_server_ap` 的 ESP32-P4C5-CAM 配置一致：GPIO50、高电平有效、复位延时 700 ms，每次主机启动均复位从机。
 
-热点默认使用 **5 GHz + Wi-Fi 6（802.11ax）**，20 MHz 带宽，在 36/40/44/48 信道中自动选择，扫描失败时回退到信道 36。保留 a/n/ac 协议兼容；实际是否使用 Wi-Fi 6 取决于客户端能力。连接设备需支持 5 GHz，不再提供 2.4 GHz 热点。
+热点默认配置（`sdkconfig.defaults`）为 **2.4 GHz 信道 1（开放热点，兼容全部终端）**；如需使用 **5 GHz + Wi-Fi 6（802.11ax）**，可在 `idf.py menuconfig -> Example Configuration -> Wi-Fi AP band` 中切换为 5 GHz 模式（20 MHz 带宽，在 36/40/44/48 信道中自动选择，扫描失败时回退到信道 36）。
 
 烧录后连接串口日志显示的 Wi-Fi AP（默认配置见 `menuconfig -> Example Configuration`），然后访问
 `http://192.168.5.1`。视频流使用 81 端口，识别结果接口为 `GET /api/detections`。
-Factory 例程保留原网页与测试逻辑；本项目使用 `ESP32-P4C5-CAM-` 开头的
-5 GHz 开放热点，与非 Factory 例程的 `ESP32-P4C5-CAM-` 热点不同。两个方向的
-例程不要同时上电测试。
+本例程保留原网页与 `/api/tests` 硬件自检逻辑，使用 `ESP32-P4C5-CAM-` 开放热点。测试时请避免多套同前缀热点同时上电造成混淆。
 
 当前识别标签族为 `tag36h11`。上电默认图传模式，不运行检测。短按 BOOT（GPIO35）在图传与实时识别之间切换；长按不重复触发。关闭视频流时不处理帧。切回图传时，正在执行的检测允许完成，旧模式结果不会显示。
 

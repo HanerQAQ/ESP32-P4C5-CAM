@@ -7,7 +7,6 @@
 **Dual-Chip Edge AI Vision (`ESP32-P4`) & Dual-Band Wi-Fi 6 Streaming (`ESP32-C5`) Module**
 
 [![CI](https://github.com/HanerQAQ/ESP32-P4C5-CAM/actions/workflows/ci.yml/badge.svg)](https://github.com/HanerQAQ/ESP32-P4C5-CAM/actions/workflows/ci.yml)
-[![Release](https://github.com/HanerQAQ/ESP32-P4C5-CAM/actions/workflows/release.yml/badge.svg)](https://github.com/HanerQAQ/ESP32-P4C5-CAM/actions/workflows/release.yml)
 [![ESP-IDF](https://img.shields.io/badge/ESP--IDF-v6.1-E7352C?logo=espressif&logoColor=white)](https://docs.espressif.com/projects/esp-idf/en/v6.1/esp32p4/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](examples/python_sdk/)
@@ -49,10 +48,10 @@ As the flagship **twin sibling** of [**ESP32-S3-CAM**](https://github.com/HanerQ
 | **Camera Sensor** | `GC2145` 2MP CMOS sensor over 2-Lane MIPI-CSI (`24-Pin` 0.5 mm FPC, 24 MHz oscillator) |
 | **Carrier USB & Debug** | USB Type-C wired to ESP32-P4 native USB (`D+/D-`) with ESD protection (`PRTR5V0U2X`) |
 | **I²C Host Bus (`P1`)** | Keyed `5264-4P` connector: `Pin 1: VCC (5V)`, `Pin 2: GND`, `Pin 3: SDA (GPIO46)`, `Pin 4: SCL (GPIO47)` (`3.3V` TTL, `400 kHz`) |
-| **Controls & Status** | `RST` hardware reset, `IO0` (`BOOT`: 1s hold in STA firmware enters AP setup), `PWR1` 3.3V LED |
+| **Controls & Status** | `RST` hardware reset, `BOOT` (`GPIO35` active low, silkscreen `IO0`; 1s hold in STA firmware enters AP setup), `PWR1` 3.3V LED |
 | **Power Requirements** | **`DC 5.0 V ≥ 2.0 A`** (shared `GND` with host controller mandatory for I²C signal integrity) |
 
-- **Hardware Documentation**: [Hardware Guide (EN)](docs/hardware_guide_en.md) | [Schematics & Datasheets](hardware/README.md) | [`SCH_ESP32P4C5-CAM_Module_V1.0.pdf`](hardware/SCH_ESP32P4C5-CAM_Module_V1.0.pdf) | [`SCH_ESP32P4C5-CAM_Carrier_Board.pdf`](hardware/SCH_ESP32P4C5-CAM_Carrier_Board.pdf)
+- **Hardware Documentation**: [Hardware Guide (EN)](docs/hardware_guide_en.md) | [Schematics & Datasheets](hardware/README.md) | [Mechanical Dimensions SVG](hardware/mechanical_dimensions.svg) | [`SCH_ESP32P4C5-CAM_Module_V1.0.pdf`](hardware/SCH_ESP32P4C5-CAM_Module_V1.0.pdf) | [`SCH_ESP32P4C5-CAM_Carrier_Board.pdf`](hardware/SCH_ESP32P4C5-CAM_Carrier_Board.pdf)
 
 ---
 
@@ -63,7 +62,7 @@ All 12 source projects live in [`firmware/`](firmware/README.md) and compile int
 | Firmware Project | Vision / Streaming Capability | I²C `addr` | SoftAP & Web UI | Source |
 | :--- | :--- | :---: | :--- | :--- |
 | **`Image_transmission_function_STA`** | Dual-band STA + SoftAP provisioning Web MJPEG stream *(Factory Default)* | `0x52` | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1/wifi`) | [`firmware/Image_transmission_function_STA`](firmware/Image_transmission_function_STA) |
-| **`Image_transmission_function_AP`** | Dedicated 5 GHz SoftAP MJPEG stream + AprilTag hardware self-test | `0x54` *(test)* | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1`) | [`firmware/Image_transmission_function_AP`](firmware/Image_transmission_function_AP) |
+| **`Image_transmission_function_AP`** | Default 2.4 GHz SoftAP MJPEG stream (5 GHz Wi-Fi 6 optional via `menuconfig`) + hardware self-test | `0x54` *(test)* | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1`) | [`firmware/Image_transmission_function_AP`](firmware/Image_transmission_function_AP) |
 | **`hand_gesture_recognition`** | 10-class hand gesture detection & classification (`ESP-DL`) | `0x54` | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1`) | [`firmware/hand_gesture_recognition`](firmware/hand_gesture_recognition) |
 | **`cat_detect`** | Offline cat detection | `0x54` | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1`) | [`firmware/cat_detect`](firmware/cat_detect) |
 | **`dog_detect`** | Offline dog detection | `0x54` | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1`) | [`firmware/dog_detect`](firmware/dog_detect) |
@@ -75,13 +74,22 @@ All 12 source projects live in [`firmware/`](firmware/README.md) and compile int
 | **`qrcode_recognition`** | Offline QR code localization & UTF-8 text decoding | `0x54` | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1`) | [`firmware/qrcode_recognition`](firmware/qrcode_recognition) |
 | **`color_detect`** | 5-channel HSV color blob detection & line tracking (`Flash` config) | `0x54` | `ESP32-P4C5-CAM-XXXXXX` (`192.168.5.1`) | [`firmware/color_detect`](firmware/color_detect) |
 
+<details>
+<summary>Preview: Live Web MJPEG Streaming UI (`192.168.5.1`)</summary>
+
+<p align="center">
+  <img src="docs/assets/web_ap_stream.png" width="520" alt="ESP32-P4C5-CAM AP Stream UI"/>
+</p>
+
+</details>
+
 ---
 
 ## 4. Quick Start
 
 ### 4.1 Build Firmware from Source (`ESP-IDF v6.1`)
 
-Activate your **ESP-IDF v6.1** shell environment, then build a single project or batch-export all 12 merged binaries:
+Activate your **ESP-IDF v6.1** shell environment with the `riscv32-esp-elf` (`esp32p4`) toolchain installed, then build a single project or batch-export all 12 merged binaries:
 
 ```bash
 # Batch build all 12 firmware projects & generate 0x0 merged binaries in prebuilt_firmware/
@@ -97,7 +105,7 @@ idf.py -p COMx flash monitor
 
 ### 4.2 One-Click Flash Prebuilt Binaries (`0x0`)
 
-Download `.bin` releases from **[GitHub Releases](https://github.com/HanerQAQ/ESP32-P4C5-CAM/releases)** (or build locally) into `prebuilt_firmware/`, then flash at offset `0x0`:
+Generate `0x0`-offset merged `.bin` images locally via `firmware/build_and_verify_all.py` (or download release assets from **[GitHub Releases](https://github.com/HanerQAQ/ESP32-P4C5-CAM/releases)** when published) into `prebuilt_firmware/`, then flash at offset `0x0`:
 
 ```bash
 # Interactive launcher (Windows: flash.bat | Linux/macOS: ./flash.sh)
@@ -123,7 +131,7 @@ python tools/i2c_diagnose.py --bus 1 --addr 0x54
 
 | Host Platform | Language / Framework | Driver Path | Demo Coverage | Guide |
 | :--- | :--- | :--- | :---: | :--- |
-| **Python SDK** *(Unified Core)* | Python 3.7+ (`smbus` / `ioctl`) | [`examples/python_sdk/`](examples/python_sdk/) | All 11 demos + voice | [`examples/python_sdk/README.md`](examples/python_sdk/README.md) |
+| **Python SDK** *(Unified Core)* | Python 3.7+ (`smbus` / `ioctl`) | [`examples/python_sdk/`](examples/python_sdk/) | All 11 vision modes | [`examples/python_sdk/README.md`](examples/python_sdk/README.md) |
 | **Raspberry Pi** | Python (`/dev/i2c-1`) | [`examples/raspberry_pi/`](examples/raspberry_pi/) | `01` ~ `11` | [`examples/raspberry_pi/README.md`](examples/raspberry_pi/README.md) |
 | **NVIDIA Jetson Orin** | Python (`/dev/i2c-7`) | [`examples/jetson_orin/`](examples/jetson_orin/) | `01` ~ `11` | [`examples/jetson_orin/README.md`](examples/jetson_orin/README.md) |
 | **ESP32 Arduino / PlatformIO** | C++ Library (`ESP32_P4C5_CAM`) | [`examples/esp32_arduino/`](examples/esp32_arduino/) | `01` ~ `11` | [`examples/esp32_arduino/README.md`](examples/esp32_arduino/README.md) |
@@ -147,7 +155,7 @@ with RawI2C(bus=1) as bus:
   <img src="docs/assets/color_tool_ui.png" width="660" alt="ColorTool v1.0 Desktop Calibration UI"/>
 </div>
 
-A **PySide6 + OpenCV** calibration utility for `color_detect` firmware over USB Type-C: capture live camera frames, click pixels to sample HSV bounds (including red wrap-around), inspect real-time segmentation masks, manage JSON lighting presets, and save parameters permanently into Flash.
+A **PySide6 + OpenCV** calibration utility for `color_detect` firmware over the native ESP32-P4 USB Serial/JTAG Type-C port (driver-free CDC ACM, no external USB-UART bridge required): capture live camera frames, click pixels to sample HSV bounds (including red wrap-around), inspect real-time segmentation masks, manage JSON lighting presets, and save parameters permanently into Flash.
 
 ```bash
 cd tools/color_tool
@@ -198,7 +206,7 @@ ESP32-P4C5-CAM/
 │   ├── color_detect/
 │   ├── build_and_verify_all.py     # Batch ESP-IDF v6.1 compiler & merge-bin exporter
 │   └── clean_for_sharing.py        # Firmware build artifact cleaner
-├── hardware/                       # Module & Carrier schematic PDFs and component datasheets
+├── hardware/                       # Module & Carrier schematic PDFs, component datasheets & mechanical SVG
 ├── prebuilt_firmware/              # Staging directory & instructions for 0x0 merged binaries
 ├── tests/                          # Automated unit tests (driver, tools, firmware & hygiene)
 ├── tools/

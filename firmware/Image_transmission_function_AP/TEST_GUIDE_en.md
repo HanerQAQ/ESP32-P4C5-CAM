@@ -9,7 +9,7 @@ This document outlines the standard testing and factory validation procedures fo
 ## 1. Test Preparation
 
 - Module under test, compatible camera sensor (GC2145), stable power supply (**5V ≥ 2A**), and Type-C cable.
-- PC or smartphone with **5 GHz Wi-Fi** support (Wi-Fi 6 / 802.11ax capable device recommended).
+- PC or smartphone with Wi-Fi support (**2.4 GHz Channel 1 by default** in `sdkconfig.defaults`; **5 GHz / Wi-Fi 6** supported when configured via `idf.py menuconfig` -> `Example Configuration` -> `Wi-Fi AP band`).
 - A clean, uncreased, non-reflective `tag36h11` AprilTag printout (record its ID in advance).
 - Plain white paper and colorful objects with text for optical quality inspection.
 - An external I²C host controller with 3.3V logic levels (recommended bus speed `100 kHz`).
@@ -37,7 +37,7 @@ idf.py -p COMx flash monitor   # Replace COMx with your serial port
 ```
 
 1. After boot, connect to the SoftAP: `ESP32-P4C5-CAM-XXXXXX` (where `XXXXXX` matches the last 3 bytes of the MAC address printed in serial monitor). No password required.
-2. The AP operates on **5 GHz (Channels 36/40/44/48)** with Wi-Fi 6 enabled and backwards compatibility.
+2. By default (`sdkconfig.defaults`), the AP operates on **2.4 GHz (Channel 1)** for maximum compatibility. If switched to 5 GHz in `idf.py menuconfig`, it uses Channels 36/40/44/48 with Wi-Fi 6 enabled.
 3. Stay connected even if your OS warns "No Internet Access". Open a web browser to `http://192.168.5.1`.
 4. The page title displays `ESP32P4C5-Mini`, starting in "Streaming Mode" by default. Video streams on port `81`.
 

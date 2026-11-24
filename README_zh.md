@@ -7,7 +7,6 @@
 **双芯端侧 AI 视觉算力（`ESP32-P4`）+ 双频 Wi-Fi 6 图传（`ESP32-C5`）旗舰模组**
 
 [![CI](https://github.com/HanerQAQ/ESP32-P4C5-CAM/actions/workflows/ci.yml/badge.svg)](https://github.com/HanerQAQ/ESP32-P4C5-CAM/actions/workflows/ci.yml)
-[![Release](https://github.com/HanerQAQ/ESP32-P4C5-CAM/actions/workflows/release.yml/badge.svg)](https://github.com/HanerQAQ/ESP32-P4C5-CAM/actions/workflows/release.yml)
 [![ESP-IDF](https://img.shields.io/badge/ESP--IDF-v6.1-E7352C?logo=espressif&logoColor=white)](https://docs.espressif.com/projects/esp-idf/en/v6.1/esp32p4/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](examples/python_sdk/)
@@ -49,10 +48,10 @@
 | **图像传感器** | `GC2145` 200 万像素 CMOS，2-Lane MIPI-CSI（`24-Pin` 0.5 mm FPC 接口，板载 24 MHz 晶振） |
 | **底板 USB 调试口** | USB Type-C 接口，直连 ESP32-P4 原生 USB（`D+/D-`），内置 ESD 静电保护（`PRTR5V0U2X`） |
 | **I²C 通信端子 (`P1`)** | `5264-4P` 防呆端子：`Pin 1: VCC (5V)`、`Pin 2: GND`、`Pin 3: SDA (GPIO46)`、`Pin 4: SCL (GPIO47)`（`3.3V` 电平，`400 kHz`） |
-| **按键与指示灯** | `RST` 硬件复位键、`IO0` 引导按键（STA 固件下长按 1 秒重新配网）、`PWR1` 3.3V 电源灯 |
+| **按键与指示灯** | `RST` 硬件复位键、`BOOT`（`GPIO35` 低电平有效，丝印 `IO0`；STA 固件下长按 1 秒重新配网）、`PWR1` 3.3V 电源灯 |
 | **供电要求** | **`DC 5.0 V ≥ 2.0 A`**；I²C 通信时**必须与外部主控共地 (`GND`)** |
 
-- **硬件资料文档**：[硬件规格与接口说明](docs/hardware_guide_zh.md) | [原理图与数据手册索引](hardware/README.md) | [`SCH_ESP32P4C5-CAM_Module_V1.0.pdf`](hardware/SCH_ESP32P4C5-CAM_Module_V1.0.pdf) | [`SCH_ESP32P4C5-CAM_Carrier_Board.pdf`](hardware/SCH_ESP32P4C5-CAM_Carrier_Board.pdf)
+- **硬件资料文档**：[硬件规格与接口说明](docs/hardware_guide_zh.md) | [原理图与数据手册索引](hardware/README.md) | [结构尺寸图 SVG](hardware/mechanical_dimensions.svg) | [`SCH_ESP32P4C5-CAM_Module_V1.0.pdf`](hardware/SCH_ESP32P4C5-CAM_Module_V1.0.pdf) | [`SCH_ESP32P4C5-CAM_Carrier_Board.pdf`](hardware/SCH_ESP32P4C5-CAM_Carrier_Board.pdf)
 
 ---
 
@@ -63,7 +62,7 @@
 | 固件工程目录 | 功能说明 | I²C 地址 | 默认热点与 Web 地址 | 源码入口 |
 | :--- | :--- | :---: | :--- | :--- |
 | **`Image_transmission_function_STA`** | 双频 STA + SoftAP 网页配网图传 *(出厂默认)* | `0x52` | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1/wifi`） | [`firmware/Image_transmission_function_STA`](firmware/Image_transmission_function_STA) |
-| **`Image_transmission_function_AP`** | 纯 5 GHz SoftAP 实时图传与 AprilTag 自检 | `0x54` *(测试)* | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1`） | [`firmware/Image_transmission_function_AP`](firmware/Image_transmission_function_AP) |
+| **`Image_transmission_function_AP`** | 默认 2.4 GHz SoftAP 实时图传（可在 `menuconfig` 切换为 5 GHz Wi-Fi 6）与硬件自检 | `0x54` *(测试)* | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1`） | [`firmware/Image_transmission_function_AP`](firmware/Image_transmission_function_AP) |
 | **`hand_gesture_recognition`** | 10 种常见手势识别与分类（`ESP-DL`） | `0x54` | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1`） | [`firmware/hand_gesture_recognition`](firmware/hand_gesture_recognition) |
 | **`cat_detect`** | 离线猫咪目标检测 | `0x54` | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1`） | [`firmware/cat_detect`](firmware/cat_detect) |
 | **`dog_detect`** | 离线狗狗目标检测 | `0x54` | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1`） | [`firmware/dog_detect`](firmware/dog_detect) |
@@ -75,13 +74,22 @@
 | **`qrcode_recognition`** | 离线二维码定位与 UTF-8 文本解码 | `0x54` | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1`） | [`firmware/qrcode_recognition`](firmware/qrcode_recognition) |
 | **`color_detect`** | 5 组色块识别与视觉巡线（阈值写入 Flash 掉电保存） | `0x54` | `ESP32-P4C5-CAM-XXXXXX`（`192.168.5.1`） | [`firmware/color_detect`](firmware/color_detect) |
 
+<details>
+<summary>界面预览：Web 实时图传页面（`192.168.5.1`）</summary>
+
+<p align="center">
+  <img src="docs/assets/web_ap_stream.png" width="520" alt="ESP32-P4C5-CAM AP 实时图传页面"/>
+</p>
+
+</details>
+
 ---
 
 ## 4. 快速开始
 
 ### 4.1 从源码编译（`ESP-IDF v6.1`）
 
-激活 **ESP-IDF v6.1** 命令行环境后，支持单工程编译或一键批量编译全部 12 个工程：
+激活 **ESP-IDF v6.1** 命令行环境（需包含 `riscv32-esp-elf` 工具链以支持 `esp32p4` 目标），即可单工程编译或一键批量编译全部 12 个工程：
 
 ```bash
 # 一键批量编译全部 12 个工程并导出 0x0 合并固件至 prebuilt_firmware/
@@ -97,7 +105,7 @@ idf.py -p COMx flash monitor
 
 ### 4.2 一键烧录合并固件（`0x0`）
 
-从 **[GitHub Releases](https://github.com/HanerQAQ/ESP32-P4C5-CAM/releases)** 下载（或本地编译导出）合并固件至 `prebuilt_firmware/` 后，从 `0x0` 地址烧录：
+通过 `firmware/build_and_verify_all.py` 本地生成 `0x0` 合并固件（或待发布后从 **[GitHub Releases](https://github.com/HanerQAQ/ESP32-P4C5-CAM/releases)** 下载）放入 `prebuilt_firmware/` 后，从 `0x0` 地址烧录：
 
 ```bash
 # 使用跨平台交互烧录工具（Windows 可双击 flash.bat，Linux/macOS 可运行 ./flash.sh）
@@ -123,7 +131,7 @@ python tools/i2c_diagnose.py --bus 1 --addr 0x54
 
 | 主控平台 | 语言 / 框架 | 驱动目录 | 配套例程数 | 文档入口 |
 | :--- | :--- | :--- | :---: | :--- |
-| **Python SDK** *(通用核心)* | Python 3.7+（`smbus` / `ioctl`） | [`examples/python_sdk/`](examples/python_sdk/) | 11 项视觉 + 语音 | [`examples/python_sdk/README.md`](examples/python_sdk/README.md) |
+| **Python SDK** *(通用核心)* | Python 3.7+（`smbus` / `ioctl`） | [`examples/python_sdk/`](examples/python_sdk/) | 全 11 项离线视觉协议 | [`examples/python_sdk/README.md`](examples/python_sdk/README.md) |
 | **Raspberry Pi** | Python（`/dev/i2c-1`） | [`examples/raspberry_pi/`](examples/raspberry_pi/) | `01` ~ `11` | [`examples/raspberry_pi/README.md`](examples/raspberry_pi/README.md) |
 | **NVIDIA Jetson Orin** | Python（`/dev/i2c-7`） | [`examples/jetson_orin/`](examples/jetson_orin/) | `01` ~ `11` | [`examples/jetson_orin/README.md`](examples/jetson_orin/README.md) |
 | **ESP32 Arduino / PlatformIO** | C++ 库（`ESP32_P4C5_CAM`） | [`examples/esp32_arduino/`](examples/esp32_arduino/) | `01` ~ `11` | [`examples/esp32_arduino/README.md`](examples/esp32_arduino/README.md) |
@@ -147,7 +155,7 @@ with RawI2C(bus=1) as bus:
   <img src="docs/assets/color_tool_ui.png" width="660" alt="ColorTool v1.0 桌面端调参工具"/>
 </div>
 
-基于 **PySide6 + OpenCV** 开发的桌面端可视化调参软件，配合 `color_detect` 固件通过 USB 串口在线抓图、鼠标点击取色（支持红色色相跨区间自动处理）、实时预览二值化 Mask、导入/导出 JSON 光照预设，并一键写入模块 Flash 掉电保存。
+基于 **PySide6 + OpenCV** 开发的桌面端可视化调参软件，配合 `color_detect` 固件通过底板 Type-C 原生 ESP32-P4 USB Serial/JTAG 接口（免外置 CH340 驱动）在线抓图、鼠标点击取色（支持红色色相跨区间自动处理）、实时预览二值化 Mask、导入/导出 JSON 光照预设，并一键写入模块 Flash 掉电保存。
 
 ```bash
 cd tools/color_tool
@@ -198,7 +206,7 @@ ESP32-P4C5-CAM/
 │   ├── color_detect/
 │   ├── build_and_verify_all.py     # ESP-IDF v6.1 一键批量编译与导出工具
 │   └── clean_for_sharing.py        # 固件构建产物清理脚本
-├── hardware/                       # 核心板/扩展底板原理图 PDF 与芯片数据手册
+├── hardware/                       # 核心板/扩展底板原理图 PDF、芯片数据手册与结构尺寸图 SVG
 ├── prebuilt_firmware/              # 0x0 一体化合并固件存放目录与烧录指南
 ├── tests/                          # 自动化单元测试（驱动、工具、工程完整性与仓库规范）
 ├── tools/

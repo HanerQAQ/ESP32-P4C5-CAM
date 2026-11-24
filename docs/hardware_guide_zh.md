@@ -66,7 +66,7 @@
 | **IIC接口**        | `P1 (5264-4P)` | 防呆 4-Pin 端子（Pin1: VCC、Pin2: GND、Pin3: SDA、Pin4: SCL）。 |
 | **排母插座**       | `U5`           | 2×8P 贴片排母，用于快速插接固定 P4C5-CAM Mini 核心模组。     |
 | **复位按键 (RST)** | `RST`          | 硬件复位按键，按下将 P4_EN / CS_EN 电平拉低，实现模块系统硬件重启。 |
-| **引导按键 (IO0)** | `IO0`          | 多功能按键，烧录时配合复位可进入固件下载模式；运行时可用作用户自定义输入。 |
+| **引导按键 (BOOT)** | `BOOT (GPIO35)`（丝印 `IO0`） | 低电平有效，直连 ESP32-P4 `GPIO35`；烧录时配合复位可进入固件下载模式，运行时可用作用户自定义输入。 |
 | **电源指示灯**     | `PWR1`         | 红色发光二极管，3.3V 电源轨正常供电时常亮。                  |
 
 <p align="center"><img src="assets/carrier_board.png" width="600" alt="Carrier Board Interfaces"/></p>

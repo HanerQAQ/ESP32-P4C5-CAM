@@ -34,6 +34,8 @@ This folder is a standard **Arduino 1.5 Library**:
   In Arduino IDE, select **File -> Examples -> ESP32_P4C5_CAM** to open any example directly.
 - **Option B (Direct Open)**:
   Open any sketch under `examples/<case>/<case>.ino` directly. Ensure `ESP32-P4C5-CAM` is in your libraries path.
+- **Option C (PlatformIO CLI)**:
+  Run `pio run -e 01_hand_gesture` using [`platformio.ini`](platformio.ini) (update `src_dir` in `platformio.ini` to build another example `02` ~ `11`).
 
 ### Step-by-Step
 
@@ -77,6 +79,8 @@ This folder is a standard **Arduino 1.5 Library**:
    在 Arduino IDE 菜单栏直接选择 **文件 -> 示例 -> ESP32_P4C5_CAM**，即可一键打开任意例程。
 2. **直接打开编译**：
    直接双击打开 `examples/<案例名>/<案例名>.ino` 源码文件进行编译上传。
+3. **PlatformIO 命令行编译**：
+   在当前目录执行 `pio run -e 01_hand_gesture`（通过 [`platformio.ini`](platformio.ini) 默认构建 `01_hand_gesture`，修改其中 `src_dir` 即可切换至 `02` ~ `11` 案例）。
 
 ### 快速上手
 

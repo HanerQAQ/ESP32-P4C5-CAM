@@ -58,7 +58,7 @@
 | **I²C Header** | `P1 (5264-4P)` | Keyed 4-Pin connector (`Pin 1: VCC`, `Pin 2: GND`, `Pin 3: SDA`, `Pin 4: SCL`). |
 | **Pin Headers** | `U5` | 2×8P female headers for mounting the P4C5-CAM Mini core module. |
 | **Reset Button** | `RST` | Hardware reset button pulling `P4_EN` / `C5_EN` low to reboot the system. |
-| **Boot Button** | `IO0` | Multi-function button: hold with reset to enter download mode; usable as user input at runtime. |
+| **Boot Button** | `BOOT` (`GPIO35`, silkscreen `IO0`) | Active-low button wired to ESP32-P4 `GPIO35`: hold with reset to enter download mode; usable as user input at runtime. |
 | **Power LED** | `PWR1` | Red LED, illuminates when the 3.3V rail is active. |
 
 <p align="center"><img src="assets/carrier_board.png" width="600" alt="Carrier Board Interfaces"/></p>
